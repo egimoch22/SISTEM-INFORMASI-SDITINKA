@@ -1,0 +1,2180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SI EKSKUL & SPP SD IT INSAN KAMIL</title>
+  
+  <!-- CSS Bootstrap 5.3 & Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Google Fonts: Inter (Apple SF Pro Style) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- JS Bundle Bootstrap 5.3 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <style>
+    :root {
+      --apple-blue: #0071e3;
+      --apple-blue-light: #e8f2ff;
+      --apple-green: #34c759;
+      --apple-green-light: #eafaf1;
+      --apple-indigo: #5856d6;
+      --apple-indigo-light: #f0f0ff;
+      --apple-orange: #ff9500;
+      --apple-orange-light: #fff7e6;
+      --apple-red: #ff3b30;
+      --apple-red-light: #ffefee;
+      --apple-bg: #f5f5f7;
+      --apple-card: #ffffff;
+      --apple-text-dark: #1d1d1f;
+      --apple-text-sub: #86868b;
+      --apple-border: rgba(0, 0, 0, 0.08);
+      --apple-radius: 20px;
+      --apple-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+      --apple-hover-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    body { 
+      background-color: var(--apple-bg); 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--apple-text-dark);
+      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hidden { display: none !important; }
+
+    .apple-card {
+      background: var(--apple-card);
+      border-radius: var(--apple-radius);
+      border: 1px solid var(--apple-border);
+      box-shadow: var(--apple-shadow);
+      padding: 24px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .apple-card:hover { box-shadow: var(--apple-hover-shadow); }
+
+    .glass-header {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--apple-border);
+      border-radius: var(--apple-radius);
+      padding: 18px 24px;
+    }
+
+    .stat-tile {
+      background: #ffffff;
+      border: 1px solid var(--apple-border);
+      border-radius: 18px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .stat-tile:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--apple-hover-shadow);
+    }
+    .stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+    .stat-tile-blue .stat-icon { background: var(--apple-blue-light); color: var(--apple-blue); }
+    .stat-tile-indigo .stat-icon { background: var(--apple-indigo-light); color: var(--apple-indigo); }
+    .stat-tile-pink .stat-icon { background: #ffe9f2; color: #ff2d55; }
+    .stat-tile-orange .stat-icon { background: var(--apple-orange-light); color: var(--apple-orange); }
+
+    .apple-segmented-control {
+      background: #e5e5ea;
+      padding: 5px;
+      border-radius: 14px;
+      display: flex;
+      gap: 4px;
+    }
+    .apple-segmented-control .nav-link {
+      color: #636366;
+      font-weight: 600;
+      font-size: 0.88rem;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 18px;
+      transition: all 0.2s ease;
+    }
+    .apple-segmented-control .nav-link.active {
+      background: #ffffff;
+      color: var(--apple-text-dark);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
+
+    .form-control, .form-select {
+      background-color: #fbfbfd;
+      border: 1px solid #d2d2d7;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 0.92rem;
+      transition: all 0.2s ease;
+    }
+    .form-control:focus, .form-select:focus {
+      background-color: #ffffff;
+      border-color: var(--apple-blue);
+      box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15);
+    }
+
+    .btn-apple {
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-apple-primary { background: var(--apple-blue); color: white; border: none; }
+    .btn-apple-primary:hover { background: #0062c4; color: white; transform: translateY(-1px); }
+    .btn-apple-success { background: var(--apple-green); color: white; border: none; }
+    .btn-apple-success:hover { background: #2cb04d; color: white; transform: translateY(-1px); }
+    .btn-apple-secondary { background: #e5e5ea; color: #1c1c1e; border: none; }
+    .btn-apple-secondary:hover { background: #d1d1d6; color: #1c1c1e; }
+    .btn-apple-danger { background: var(--apple-red-light); color: var(--apple-red); border: none; }
+    .btn-apple-danger:hover { background: #ffdcdb; color: var(--apple-red); }
+
+    .avatar-apple {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e0e7ff 0%, #dbeafe 100%);
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--apple-blue);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .avatar-apple img { width: 100%; height: 100%; object-fit: cover; }
+
+    .table-apple th {
+      background: #fafafc;
+      color: var(--apple-text-sub);
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--apple-border);
+      padding: 12px 16px;
+    }
+    .table-apple td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f2f2f7;
+      font-size: 0.88rem;
+    }
+    .table-apple tr:last-child td { border-bottom: none; }
+
+    .badge-apple {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .badge-apple-green { background: var(--apple-green-light); color: #1e8739; }
+    .badge-apple-red { background: var(--apple-red-light); color: var(--apple-red); }
+    .badge-apple-blue { background: var(--apple-blue-light); color: var(--apple-blue); }
+    .badge-apple-gray { background: #f2f2f7; color: #636366; }
+
+    .kuitansi-box {
+      border: 2px dashed #c7c7cc;
+      border-radius: 16px;
+      background: #ffffff;
+      padding: 24px;
+      position: relative;
+    }
+    .kuitansi-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-25deg);
+      font-size: 4.5rem;
+      font-weight: 900;
+      color: rgba(52, 199, 89, 0.15);
+      letter-spacing: 6px;
+      pointer-events: none;
+      border: 4px solid rgba(52, 199, 89, 0.2);
+      padding: 6px 30px;
+      border-radius: 12px;
+    }
+
+    @media print {
+      body * { visibility: hidden !important; }
+      #areaCetakKuitansi, #areaCetakKuitansi * { visibility: visible !important; }
+      #areaCetakKuitansi {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+      }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="p-2 p-md-4">
+
+<div class="container-fluid" style="max-width: 1080px;">
+  
+  <!-- APP HEADER -->
+  <div class="d-flex justify-content-between align-items-center mb-4 pb-2">
+    <div class="d-flex align-items-center gap-3">
+      <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #0071e3, #42a5f5); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.4rem; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);">
+        <i class="bi bi-mortarboard-fill"></i>
+      </div>
+      <div>
+        <h4 class="fw-bold mb-0" style="color: #1d1d1f; letter-spacing: -0.02em;">SI EKSKUL & SPP</h4>
+        <div class="small" style="color: #86868b; font-size: 0.82rem;">SD IT INSAN KAMIL — Portal Manajemen & Siswa</div>
+      </div>
+    </div>
+    <div>
+      <span class="badge-apple badge-apple-blue fw-semibold">
+        <i class="bi bi-phone-fill me-1"></i> Mode HP Cepat & Stabil
+      </span>
+    </div>
+  </div>
+
+  <!-- 1. FORM LOGIN PRAKTIS -->
+  <div id="authSection" class="apple-card mx-auto mt-4" style="max-width: 480px;">
+    <div class="apple-segmented-control mb-4">
+      <button id="tabOrtuBtn" class="nav-link active w-50" onclick="switchLoginMode('ORTU')">
+        <i class="bi bi-people-fill me-1"></i> Orang Tua
+      </button>
+      <button id="tabStaffBtn" class="nav-link w-50" onclick="switchLoginMode('STAFF')">
+        <i class="bi bi-person-lock me-1"></i> Staff / Guru
+      </button>
+    </div>
+
+    <div id="loginOrtuArea">
+      <div class="mb-3">
+        <label class="form-label small fw-semibold text-secondary">Pilih Kelas:</label>
+        <select id="loginPilihKelas" class="form-select" onchange="onKelasSelected()">
+          <option value="">-- Memuat Kelas... --</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label small fw-semibold text-secondary">Pilih Nama Ananda:</label>
+        <select id="loginPilihSiswa" class="form-select" disabled>
+          <option value="">-- Pilih Kelas Terlebih Dahulu --</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label small fw-semibold text-secondary">PIN Keamanan (Password):</label>
+        <input type="password" id="loginPasswordOrtu" class="form-control" placeholder="Masukkan PIN (Default: 1234)">
+      </div>
+
+      <button id="btnLoginOrtu" class="btn btn-apple btn-apple-primary w-100 py-2" onclick="handleLoginOrtu()">
+        <i class="bi bi-box-arrow-in-right"></i> Masuk ke Dashboard Anak
+      </button>
+    </div>
+
+    <div id="loginStaffArea" class="hidden">
+      <div class="mb-3">
+        <label class="form-label small fw-semibold text-secondary">ID Pengguna (Staff / Admin):</label>
+        <input type="text" id="loginStaffId" class="form-control" placeholder="Contoh: Tata Usaha / Nama Guru">
+      </div>
+      <div class="mb-4">
+        <label class="form-label small fw-semibold text-secondary">Password:</label>
+        <input type="password" id="loginStaffPass" class="form-control" placeholder="******">
+      </div>
+      <button id="btnLoginStaff" class="btn btn-apple btn-apple-primary w-100 py-2" onclick="handleLoginStaff()">
+        <i class="bi bi-shield-lock-fill"></i> Masuk Portal Staff
+      </button>
+    </div>
+  </div>
+
+  <!-- 2. DASHBOARD ADMIN APPLE MODERN -->
+  <div id="adminPortal" class="hidden">
+    <div class="glass-header d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+      <div>
+        <h5 class="fw-bold mb-0 text-dark">Executive Command Center</h5>
+        <div class="small text-muted">SD IT Insan Kamil — Kelola SPP, Ekskul, & Kuitansi Digital</div>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-apple btn-apple-secondary btn-sm" onclick="initAdminDashboard()" title="Refresh Data">
+          <i class="bi bi-arrow-clockwise"></i> Segarkan
+        </button>
+        <button class="btn btn-apple btn-apple-danger btn-sm" onclick="logout()">
+          <i class="bi bi-power"></i> Keluar
+        </button>
+      </div>
+    </div>
+
+    <!-- 4 KARTU KPI MODERN -->
+    <div class="row g-3 mb-4">
+      <div class="col-sm-6 col-lg-3">
+        <div class="stat-tile stat-tile-blue">
+          <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
+          <div class="small text-uppercase fw-semibold text-muted" style="font-size: 0.72rem;">Total Siswa Aktif</div>
+          <div class="fs-2 fw-bold text-dark mt-1" id="kpiTotalSiswa">0</div>
+          <div class="small text-muted mt-1" id="kpiTotalPendaftaran">0 Pendaftaran Ekskul</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="stat-tile stat-tile-indigo">
+          <div class="stat-icon"><i class="bi bi-gender-male"></i></div>
+          <div class="small text-uppercase fw-semibold text-muted" style="font-size: 0.72rem;">Siswa Laki-laki</div>
+          <div class="fs-2 fw-bold text-dark mt-1" id="kpiTotalLaki">0</div>
+          <div class="small text-muted mt-1">Siswa Terdaftar (L)</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="stat-tile stat-tile-pink">
+          <div class="stat-icon"><i class="bi bi-gender-female"></i></div>
+          <div class="small text-uppercase fw-semibold text-muted" style="font-size: 0.72rem;">Siswa Perempuan</div>
+          <div class="fs-2 fw-bold text-dark mt-1" id="kpiTotalPerempuan">0</div>
+          <div class="small text-muted mt-1">Siswa Terdaftar (P)</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="stat-tile stat-tile-orange">
+          <div class="stat-icon"><i class="bi bi-wallet2"></i></div>
+          <div class="small text-uppercase fw-semibold text-muted" style="font-size: 0.72rem;">Tunggakan Ekskul</div>
+          <div class="fs-2 fw-bold text-dark mt-1" id="kpiTotalPiutang">Rp 0</div>
+          <div class="small text-muted mt-1">Belum Terbayar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUB-NAVIGASI ADMIN MENU -->
+    <div class="apple-segmented-control mb-4">
+      <button class="nav-link active flex-fill" id="adminTabSppBtn" onclick="switchAdminTab('spp')">
+        <i class="bi bi-receipt me-1 text-success"></i> Kasir SPP
+      </button>
+      <button class="nav-link flex-fill" id="adminTabEkskulBtn" onclick="switchAdminTab('ekskul')">
+        <i class="bi bi-dribbble me-1 text-primary"></i> Operasional Ekskul
+      </button>
+      <button class="nav-link flex-fill" id="adminTabSiswaBtn" onclick="switchAdminTab('siswa')">
+        <i class="bi bi-person-bounding-box me-1 text-info"></i> Data & Foto Siswa
+      </button>
+      <button class="nav-link flex-fill" id="adminTabNunggakBtn" onclick="switchAdminTab('nunggak')">
+        <i class="bi bi-whatsapp me-1 text-danger"></i> Tagihan Belum Lunas
+      </button>
+      <button class="nav-link flex-fill" id="adminTabRekapBtn" onclick="switchAdminTab('rekap')">
+        <i class="bi bi-file-earmark-excel-fill me-1 text-success"></i> Ekspor Laporan
+      </button>
+    </div>
+
+    <!-- TAB 1: KASIR SPP -->
+    <div id="adminPaneSpp" class="apple-card mb-4">
+      <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3 flex-wrap gap-2">
+        <div class="d-flex align-items-center gap-2">
+          <div style="width: 38px; height: 38px; border-radius: 10px; background: var(--apple-green-light); color: var(--apple-green); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+            <i class="bi bi-cash-coin"></i>
+          </div>
+          <div>
+            <h6 class="fw-bold mb-0">Input Pembayaran SPP Siswa</h6>
+            <div class="small text-muted">Kuitansi instan & tombol kirim ke WhatsApp Orang Tua</div>
+          </div>
+        </div>
+        <span class="badge-apple badge-apple-green">
+          <i class="bi bi-database-check me-1"></i> SPP INKA 2026 Connected
+        </span>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label small fw-semibold text-secondary">Pilih Siswa (NISN):</label>
+          <select id="adminSppPilihSiswa" class="form-select" onchange="onAdminSelectSppSiswa()"></select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label small fw-semibold text-secondary">Pilih Tagihan SPP:</label>
+          <select id="adminSppPilihTagihan" class="form-select" onchange="onAdminSelectSppTagihan()"></select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label small fw-semibold text-secondary">Jumlah Bayar (Rp):</label>
+          <input type="number" id="adminSppNominal" class="form-control" placeholder="Contoh: 350000">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label small fw-semibold text-secondary">Metode Pembayaran:</label>
+          <select id="adminSppMetode" class="form-select">
+            <option value="Tunai">💵 Tunai di TU</option>
+            <option value="Transfer Bank Mandiri">🏦 Transfer Bank Mandiri</option>
+            <option value="Transfer Bank BSI">🏦 Transfer Bank BSI</option>
+          </select>
+        </div>
+        <div class="col-md-5">
+          <label class="form-label small fw-semibold text-secondary">Catatan / Keterangan Kuitansi:</label>
+          <input type="text" id="adminSppCatatan" class="form-control" placeholder="Contoh: Lunas SPP Bulan Juli 2026">
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+          <button class="btn btn-apple btn-apple-success w-100 py-2" id="btnAdminSimpanSpp" onclick="prosesSimpanSppAdmin()">
+            <i class="bi bi-receipt"></i> Simpan & Buat Struk
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: EKSKUL -->
+    <div id="adminPaneEkskul" class="hidden">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-6">
+          <div class="apple-card h-100">
+            <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+              <i class="bi bi-wallet-fill text-primary"></i> Input Pembayaran Ekskul / Titip Saldo
+            </h6>
+            <div class="mb-2">
+              <label class="form-label small fw-semibold text-secondary">Pilih Siswa:</label>
+              <select id="adminPilihSiswa" class="form-select" onchange="onAdminSelectSiswa()"></select>
+            </div>
+            <div class="mb-2">
+              <label class="form-label small fw-semibold text-secondary">Jenis Transaksi:</label>
+              <select id="adminTipeTransaksi" class="form-select" onchange="toggleAdminInputType()">
+                <option value="TAGIHAN">Pelunasan Tagihan Ekskul yang Ada</option>
+                <option value="TOPUP">Titip Saldo / Tambah Deposit Baru</option>
+              </select>
+            </div>
+            <div id="adminAreaTagihanGantung" class="mb-2">
+              <label class="form-label small fw-semibold text-secondary">Pilih Tagihan Ekskul:</label>
+              <select id="adminPilihTagihanGantung" class="form-select"></select>
+              <div id="adminWarningTagihan" class="small mt-1 text-danger" style="font-size: 0.75rem;"></div>
+            </div>
+            <div id="adminAreaNominal" class="mb-2 hidden">
+              <label class="form-label small fw-semibold text-secondary">Nominal Titip Saldo (Rp):</label>
+              <input type="number" id="adminInputNominal" class="form-control" placeholder="Contoh: 100000">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-secondary">Catatan Pembayaran:</label>
+              <input type="text" id="adminCatatanBayar" class="form-control" placeholder="Contoh: Tunai di TU">
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-apple btn-apple-primary flex-grow-1" onclick="prosesSimpanBayarAdmin()">
+                <i class="bi bi-check2-circle"></i> Simpan Transaksi Ekskul
+              </button>
+              <button class="btn btn-apple btn-apple-secondary" onclick="bukaHistoriDariAdmin()">
+                <i class="bi bi-book"></i> Rekening Koran
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="apple-card h-100">
+            <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+              <i class="bi bi-calendar2-range-fill text-warning"></i> Tutup Buku Periode Ekskul
+            </h6>
+            <p class="small text-muted mb-3">
+              Pilih cabang ekskul yang pertemuannya sudah tuntas. Kuota sesi siswa otomatis direset penuh dan invoice baru diterbitkan.
+            </p>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-secondary">Cabang Ekskul:</label>
+              <select id="adminSelectEkskul" class="form-select"></select>
+            </div>
+            <div class="mb-4">
+              <label class="form-label small fw-semibold text-secondary">Nama Periode Baru yang Dibuka:</label>
+              <input type="text" id="adminPeriodeBaru" class="form-control" placeholder="Contoh: Periode 3">
+            </div>
+            <button class="btn btn-apple btn-apple-secondary w-100" onclick="handleTutupPeriode()">
+              <i class="bi bi-arrow-repeat"></i> Tutup Periode & Terbitkan Tagihan Baru
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="apple-card">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-shield-check text-success"></i> Verifikasi Bukti Transfer Ortu (Ekskul)
+          </h6>
+          <button class="btn btn-apple btn-apple-secondary btn-sm" onclick="loadAdminTagihan()">
+            <i class="bi bi-arrow-clockwise"></i> Segarkan Data
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-apple align-middle w-100 mb-0">
+            <thead>
+              <tr>
+                <th>Siswa</th>
+                <th>Kategori / Periode</th>
+                <th>Nominal</th>
+                <th>Bukti Transfer</th>
+                <th>Status</th>
+                <th class="text-end">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBayarBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: DATA SISWA -->
+    <div id="adminPaneSiswa" class="hidden">
+      <div class="apple-card">
+        <div class="border-bottom pb-3 mb-4">
+          <h6 class="fw-bold mb-1">Manajemen Profil Siswa & Foto Avatar</h6>
+          <div class="small text-muted">Ubah nama, penyesuaian kelas, dan simpan foto profil langsung ke sheet USERS.</div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4 text-center border-end">
+            <label class="form-label small fw-semibold text-secondary d-block text-start mb-2">Pratinjau Foto Profil:</label>
+            <div class="avatar-apple mx-auto mb-3" style="width: 110px; height: 110px;" id="adminPratinjauFoto">
+              <i class="bi bi-person text-secondary" style="font-size: 3rem;"></i>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-secondary">Pilih Siswa yang Diedit:</label>
+              <select id="adminEditPilihSiswa" class="form-select" onchange="onAdminPilihSiswaUntukEdit()">
+                <option value="">-- Memuat Siswa... --</option>
+              </select>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-md-8">
+                <label class="form-label small fw-semibold text-secondary">Nama Lengkap Siswa:</label>
+                <input type="text" id="adminEditNamaSiswa" class="form-control" placeholder="Nama Lengkap Siswa">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-semibold text-secondary">Kelas:</label>
+                <input type="text" id="adminEditKelasSiswa" class="form-control" placeholder="Contoh: 1-A">
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label small fw-semibold text-secondary">Unggah Foto Baru:</label>
+              <input type="file" id="adminEditFileFoto" class="form-control" accept="image/*">
+            </div>
+            <button id="btnAdminSimpanSiswa" class="btn btn-apple btn-apple-primary px-4" onclick="adminProsesSimpanSiswa()">
+              <i class="bi bi-cloud-arrow-up-fill"></i> Simpan Data & Foto Profil
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: TAGIHAN BELUM LUNAS -->
+    <div id="adminPaneNunggak" class="hidden">
+      <div class="apple-card">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <h6 class="fw-bold mb-0 text-danger d-flex align-items-center gap-2">
+              <i class="bi bi-exclamation-octagon-fill"></i> Notifikasi Tagihan Belum Lunas
+            </h6>
+            <div class="small text-muted">Kirim rincian kehadiran dan tagihan resmi langsung ke WhatsApp Orang Tua</div>
+          </div>
+          <span class="badge-apple badge-apple-red fw-bold" id="badgeTotalNunggak">0 Siswa</span>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-apple align-middle w-100 mb-0">
+            <thead>
+              <tr>
+                <th>Siswa</th>
+                <th>Ekskul & Periode</th>
+                <th>Kehadiran</th>
+                <th>Tagihan Bersih</th>
+                <th>No WhatsApp Ortu</th>
+                <th class="text-end">Aksi Langsung</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableNunggakBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: EKSPOR LAPORAN -->
+    <div id="adminPaneRekap" class="hidden">
+      <div class="apple-card">
+        <div class="border-bottom pb-3 mb-4">
+          <h6 class="fw-bold mb-1">Pusat Ekspor Laporan Rekap Keuangan</h6>
+          <div class="small text-muted">Unduh seluruh riwayat penerimaan kas pembayaran dalam format CSV kompatibel Excel.</div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="p-3 border rounded-3 bg-light h-100">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <i class="bi bi-receipt text-success fs-4"></i>
+                <h6 class="fw-bold mb-0">Rekap Pembayaran SPP Sekolah</h6>
+              </div>
+              <p class="small text-muted mb-3">Unduh seluruh nomor kuitansi, tanggal transaksi, nama siswa, nominal SPP terbayar, dan metode bayar.</p>
+              <button class="btn btn-apple btn-apple-success w-100" onclick="handleEksporLaporan('SPP')">
+                <i class="bi bi-file-earmark-spreadsheet-fill"></i> Download Rekap SPP (.CSV)
+              </button>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="p-3 border rounded-3 bg-light h-100">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <i class="bi bi-dribbble text-primary fs-4"></i>
+                <h6 class="fw-bold mb-0">Rekap Transaksi Ekskul</h6>
+              </div>
+              <p class="small text-muted mb-3">Unduh log tagihan per cabang ekskul, potongan deposit, dan status pembayaran per siswa.</p>
+              <button class="btn btn-apple btn-apple-primary w-100" onclick="handleEksporLaporan('EKSKUL')">
+                <i class="bi bi-file-earmark-spreadsheet-fill"></i> Download Rekap Ekskul (.CSV)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. PORTAL ORANG TUA -->
+  <div id="ortuPortal" class="apple-card hidden p-4">
+    <div class="p-3 mb-4 rounded-4" style="background: linear-gradient(135deg, #0071e3 0%, #42a5f5 100%); color: white;">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div class="d-flex align-items-center gap-3">
+          <div class="avatar-apple" id="ortuAvatar">A</div>
+          <div>
+            <h5 class="mb-0 fw-bold" id="ortuNamaSiswa">Nama Anak</h5>
+            <div class="small opacity-75 mt-1" id="ortuNISN">NISN: - | Kelas: -</div>
+          </div>
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-sm btn-light fw-semibold rounded-3 shadow-sm" onclick="bukaModalEditProfil()" title="Ubah Password & No WhatsApp">
+            <i class="bi bi-gear-fill me-1"></i> Akun & WA
+          </button>
+          <button class="btn btn-sm btn-light bg-opacity-75 rounded-3 fw-semibold" onclick="refreshOrtu()" title="Segarkan Data Terbaru">
+            <i class="bi bi-arrow-clockwise"></i> Segarkan
+          </button>
+          <button class="btn btn-sm btn-outline-light rounded-3" onclick="logout()">Keluar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="apple-segmented-control mb-4">
+      <button class="nav-link active flex-fill" id="tabEkskulBtn" onclick="switchOrtuView('ekskul')">
+        <i class="bi bi-dribbble me-1"></i> Ekskul & Sisa Kuota
+      </button>
+      <button class="nav-link flex-fill" id="tabSppBtn" onclick="switchOrtuView('spp')">
+        <i class="bi bi-receipt me-1"></i> SPP & Biaya Sekolah
+      </button>
+      <button class="nav-link flex-fill" id="tabDapoBtn" onclick="switchOrtuView('dapodik')">
+        <i class="bi bi-card-checklist me-1"></i> Biodata Dapodik
+      </button>
+    </div>
+
+    <!-- VIEW 1: EKSKUL -->
+    <div id="viewEkskul">
+      <div class="p-3 mb-4 rounded-4" style="background: #fbfbfd; border: 1px solid var(--apple-border);">
+        <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+          <span class="small fw-bold text-success text-uppercase">
+            <i class="bi bi-wallet2 me-1"></i> Saldo Titipan Ekskul
+          </span>
+          <button class="btn btn-apple btn-apple-success btn-sm py-1 px-3" onclick="bukaModalTopUp()">
+            <i class="bi bi-plus-circle me-1"></i> Titip Saldo Duluan
+          </button>
+        </div>
+        <div class="row text-center g-2">
+          <div class="col-4 border-end">
+            <div class="stat-card-clickable p-2" onclick="bukaModalHistoriDeposit(currentUser.id, 'TITIP')">
+              <div class="small text-muted" style="font-size: 0.72rem;">TOTAL TITIP SALDO 🔍</div>
+              <div class="fw-bold text-dark fs-6 mt-1" id="ortuTotalTitip">Rp 0</div>
+            </div>
+          </div>
+          <div class="col-4 border-end">
+            <div class="p-2">
+              <div class="small text-muted" style="font-size: 0.72rem;">TERPAKAI PERTEMUAN</div>
+              <div class="fw-bold text-danger fs-6 mt-1" id="ortuTerpakai">Rp 0</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stat-card-clickable p-2" onclick="bukaModalHistoriDeposit(currentUser.id, 'SEMUA')">
+              <div class="small text-muted" style="font-size: 0.72rem;">SISA SALDO AKTIF 📄</div>
+              <div class="fw-bold text-success fs-6 mt-1" id="ortuSaldoDeposit">Rp 0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <h6 class="fw-bold text-secondary mb-3 small text-uppercase">Cabang Ekskul yang Diikuti:</h6>
+        <div id="ortuEkskulContainer" class="d-flex flex-column gap-2"></div>
+      </div>
+
+      <div>
+        <h6 class="fw-bold text-secondary mb-3 small text-uppercase">Tagihan Ekskul Periode Baru:</h6>
+        <div id="ortuTagihanContainer" class="d-flex flex-column gap-2"></div>
+      </div>
+    </div>
+
+    <!-- VIEW 2: SPP -->
+    <div id="viewSpp" class="hidden">
+      <div class="row g-3 mb-4">
+        <div class="col-6">
+          <div class="p-3 rounded-4 bg-white border text-center shadow-sm">
+            <span class="small text-muted fw-bold text-uppercase" style="font-size: 0.72rem;">Total Tunggakan SPP</span>
+            <div class="fs-4 fw-bold text-danger mt-1" id="sppTotalTunggakan">Rp 0</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="p-3 rounded-4 bg-white border text-center shadow-sm">
+            <span class="small text-muted fw-bold text-uppercase" style="font-size: 0.72rem;">Total Riwayat Bayar</span>
+            <div class="fs-4 fw-bold text-success mt-1" id="sppTotalTerbayar">Rp 0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="apple-card mb-4 p-3">
+        <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
+          <span class="fw-bold small text-uppercase text-secondary">📋 Rincian Tagihan SPP Sekolah</span>
+          <span class="badge-apple badge-apple-gray" id="sppBadgeStatus">Status</span>
+        </div>
+        <div id="sppDaftarTagihan">
+          <div class="text-center text-muted small py-3">Memuat tagihan SPP...</div>
+        </div>
+      </div>
+
+      <div class="apple-card p-3">
+        <div class="border-bottom pb-2 mb-2">
+          <span class="fw-bold small text-uppercase text-secondary">🧾 Riwayat Kuitansi Resmi dari Admin TU</span>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-apple align-middle mb-0 w-100">
+            <thead>
+              <tr>
+                <th>No. Kuitansi</th>
+                <th>Tanggal</th>
+                <th>Tagihan / Catatan</th>
+                <th class="text-end">Jumlah</th>
+                <th>Metode</th>
+                <th class="text-end">Kuitansi</th>
+              </tr>
+            </thead>
+            <tbody id="sppTbodyHistory">
+              <tr><td colspan="6" class="text-center text-muted py-3">Belum ada riwayat pembayaran.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: DAPODIK -->
+    <div id="viewDapodik" class="hidden">
+      <div class="card border-0 bg-light p-3 rounded-4">
+        <div id="dapoLoading" class="text-muted small text-center py-4">
+          <div class="spinner-border spinner-border-sm text-primary mb-2" role="status"></div>
+          <div>Mengambil data dari Master Dapodik...</div>
+        </div>
+
+        <div id="dapoContent" class="hidden">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="bg-white p-3 rounded-3 border h-100 shadow-sm">
+                <h6 class="fw-bold text-primary border-bottom pb-2 mb-3">👤 Data Pribadi Siswa</h6>
+                <div class="d-flex flex-column gap-2">
+                  <div class="d-flex justify-content-between"><span class="dapo-label">NISN</span><span class="dapo-value" id="dapoNisn">-</span></div>
+                  <div class="d-flex justify-content-between"><span class="dapo-label">NIK</span><span class="dapo-value" id="dapoNik">-</span></div>
+                  <div class="d-flex justify-content-between"><span class="dapo-label">Jenis Kelamin</span><span class="dapo-value" id="dapoJk">-</span></div>
+                  <div class="d-flex justify-content-between"><span class="dapo-label">TTL</span><span class="dapo-value text-end" id="dapoTtl">-</span></div>
+                  <div class="d-flex justify-content-between"><span class="dapo-label">Rombel</span><span class="badge bg-primary bg-opacity-10 text-primary fw-bold" id="dapoRombel">-</span></div>
+                  <div class="d-flex justify-content-between"><span class="dapo-label">Fisik (TB/BB)</span><span class="dapo-value" id="dapoFisik">-</span></div>
+                  <div class="border-top pt-2"><span class="dapo-label d-block mb-1">Alamat</span><div class="dapo-value small text-muted" id="dapoAlamat">-</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="bg-white p-3 rounded-3 border h-100 shadow-sm">
+                <h6 class="fw-bold text-success border-bottom pb-2 mb-3">👨‍👩‍👧 Data Orang Tua / Wali</h6>
+                <div class="d-flex flex-column gap-2">
+                  <div class="d-flex justify-content-between"><span class="dapo-label">Nama Ayah</span><span class="dapo-value" id="dapoAyah">-</span></div>
+                  <div class="d-flex justify-content-between"><span class="dapo-label">Pekerjaan</span><span class="dapo-value text-end" id="dapoKerjaAyah">-</span></div>
+                  <hr class="my-1">
+                  <div class="d-flex justify-content-between"><span class="dapo-label">Nama Ibu</span><span class="dapo-value" id="dapoIbu">-</span></div>
+                  <div class="d-flex justify-content-between"><span class="dapo-label">Pekerjaan</span><span class="dapo-value text-end" id="dapoKerjaIbu">-</span></div>
+                  <hr class="my-1">
+                  <div class="d-flex justify-content-between"><span class="dapo-label">No. KK</span><span class="dapo-value" id="dapoNoKk">-</span></div>
+                  <div class="d-flex justify-content-between"><span class="dapo-label">No. Akta</span><span class="dapo-value text-end text-truncate" style="max-width: 160px;" id="dapoAkta">-</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="dapoNotFound" class="text-muted small text-center py-4 hidden">
+          ⚠️ <em>Data siswa ini belum terhubung di file Spreadsheet Dapodik.</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. PORTAL GURU -->
+  <div id="guruPortal" class="apple-card hidden mx-auto" style="max-width: 820px;">
+    <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+      <div>
+        <h5 class="mb-0 fw-bold" id="guruNama">Nama Pelatih</h5>
+        <div class="d-flex gap-2 align-items-center mt-1">
+          <span class="badge-apple badge-apple-blue" id="guruEkskul">Cabang: -</span>
+          <span class="badge-apple badge-apple-gray" id="guruPeriodeAktif">Periode: -</span>
+        </div>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-apple btn-apple-secondary btn-sm" onclick="refreshGuru()">
+          <i class="bi bi-arrow-clockwise"></i> Segarkan Data
+        </button>
+        <button class="btn btn-apple btn-apple-danger btn-sm" onclick="logout()">Keluar</button>
+      </div>
+    </div>
+
+    <div class="p-3 rounded-3 bg-light border mb-3">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <label class="form-label small fw-bold mb-0 text-secondary">📅 Tanggal Latihan Ekskul Hari Ini:</label>
+        <input type="date" id="guruTanggalAbsen" class="form-control" style="width: auto; font-weight: bold;">
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-apple align-middle w-100">
+        <thead>
+          <tr>
+            <th>Siswa</th>
+            <th>Kelas</th>
+            <th class="text-center">Sisa Sesi</th>
+            <th class="text-end">Presensi</th>
+          </tr>
+        </thead>
+        <tbody id="guruTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL KUITANSI RESMI -->
+<div class="modal fade" id="modalKuitansi" tabindex="-1">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content rounded-4 border-0 shadow-lg">
+      <div class="modal-header bg-dark text-white rounded-top-4 d-flex justify-content-between align-items-center no-print">
+        <h6 class="modal-title fw-bold"><i class="bi bi-receipt me-1"></i> Bukti Pembayaran Sah</h6>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      
+      <div class="modal-body p-4" id="areaCetakKuitansi">
+        <div class="kuitansi-box">
+          <div class="kuitansi-watermark">LUNAS</div>
+          <div class="text-center border-bottom pb-3 mb-3">
+            <h5 class="fw-bold mb-0 text-primary" style="letter-spacing: -0.02em;">SD IT INSAN KAMIL</h5>
+            <small class="text-muted d-block">Sistem Administrasi & Keuangan Terpadu</small>
+            <span class="badge bg-light text-dark border mt-1" style="font-size: 0.75rem;">KUITANSI PEMBAYARAN RESMI</span>
+          </div>
+
+          <table class="table table-sm table-borderless mb-3" style="font-size: 0.88rem;">
+            <tr><td class="text-muted" style="width: 120px;">No. Kuitansi</td><td>: <strong id="kuitansiNo">-</strong></td></tr>
+            <tr><td class="text-muted">Tanggal Bayar</td><td>: <span id="kuitansiTgl">-</span></td></tr>
+            <tr><td class="text-muted">Nama Siswa</td><td>: <strong id="kuitansiNama">-</strong></td></tr>
+            <tr><td class="text-muted">NISN Siswa</td><td>: <span id="kuitansiNisn">-</span></td></tr>
+            <tr><td class="text-muted">Uraian Tagihan</td><td>: <span id="kuitansiUraian" class="fw-semibold text-dark">-</span></td></tr>
+            <tr><td class="text-muted">Metode / Catatan</td><td>: <span id="kuitansiMetode">-</span> (<span id="kuitansiCatatan">-</span>)</td></tr>
+          </table>
+
+          <div class="p-3 rounded-3 bg-light border text-center mb-3">
+            <div class="small text-muted text-uppercase fw-semibold" style="font-size: 0.72rem;">Jumlah Uang Terbayar:</div>
+            <div class="fs-3 fw-bold text-success" id="kuitansiNominal">Rp 0</div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-end pt-2 border-top" style="font-size: 0.8rem;">
+            <div class="text-muted">
+              <div>Status: <span class="badge bg-success">TERVERIFIKASI SAH</span></div>
+              <small class="text-muted">*Bukti sah pembayaran sekolah</small>
+            </div>
+            <div class="text-center" style="min-width: 140px;">
+              <div class="text-muted small">Petugas Kasir/TU:</div>
+              <div class="fw-bold mt-4 border-top pt-1" id="kuitansiPetugas">Admin TU</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer bg-light rounded-bottom-4 no-print d-flex justify-content-between">
+        <button class="btn btn-apple btn-apple-secondary btn-sm" data-bs-dismiss="modal">Tutup</button>
+        <div class="d-flex gap-2">
+          <button class="btn btn-apple btn-apple-success btn-sm" id="btnKirimKuitansiWA">
+            <i class="bi bi-whatsapp"></i> Kirim ke WhatsApp Ortu
+          </button>
+          <button class="btn btn-apple btn-apple-primary btn-sm" onclick="window.print()">
+            <i class="bi bi-printer-fill"></i> Cetak / PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EDIT PROFIL ORANG TUA -->
+<div class="modal fade" id="modalEditProfil" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-4 border-0 shadow">
+      <div class="modal-header bg-primary text-white rounded-top-4">
+        <h6 class="modal-title fw-bold"><i class="bi bi-gear-fill me-1"></i> Pengaturan Akun & WhatsApp</h6>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div class="alert alert-info py-2 small mb-3 rounded-3">
+          Perbarui nomor WhatsApp aktif serta ubah PIN standar Anda agar akun tetap aman.
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Nama Ananda:</label>
+          <input type="text" id="editNamaSiswa" class="form-control bg-light" readonly>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Nomor WhatsApp Orang Tua:</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-whatsapp"></i></span>
+            <input type="text" id="editNoWa" class="form-control" placeholder="Contoh: 081234567890">
+          </div>
+        </div>
+        <hr class="my-3">
+        <div class="mb-2">
+          <label class="form-label small fw-semibold">Ganti PIN Baru:</label>
+          <input type="password" id="editPassBaru" class="form-control" placeholder="Ketik PIN Baru (Kosongkan jika tidak ingin ganti)">
+        </div>
+        <div class="mb-4">
+          <label class="form-label small fw-semibold">Konfirmasi PIN Baru:</label>
+          <input type="password" id="editPassKonfirm" class="form-control" placeholder="Ketik ulang PIN Baru">
+        </div>
+        <button id="btnSimpanProfil" class="btn btn-apple btn-apple-primary w-100 py-2" onclick="prosesSimpanProfilOrtu()">
+          Simpan Perubahan
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL BUKU KAS -->
+<div class="modal fade" id="modalHistori" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content rounded-4 border-0 shadow">
+      <div class="modal-header bg-dark text-white rounded-top-4 d-flex justify-content-between align-items-center">
+        <h6 class="modal-title fw-bold" id="modalHistoriTitle">Buku Kas & Riwayat Deposit Siswa</h6>
+        <div class="no-print">
+          <button class="btn btn-sm btn-warning fw-bold me-2 rounded-3" onclick="window.print()">
+            <i class="bi bi-printer-fill me-1"></i> Cetak / PDF
+          </button>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+      </div>
+      <div class="modal-body p-4" id="printArea">
+        <div class="text-center border-bottom pb-3 mb-3">
+          <h5 class="fw-bold mb-0 text-uppercase">REKENING KORAN & MUTASI DEPOSIT EKSKUL</h5>
+          <small class="text-muted">SD IT INSAN KAMIL — SISTEM INFORMASI TERPADU</small>
+        </div>
+        <div class="row mb-3 g-2">
+          <div class="col-sm-6">
+            <table class="table table-sm table-borderless mb-0">
+              <tr><td class="text-muted" style="width: 100px;">Nama Siswa</td><td>: <strong id="historiNamaSiswa">-</strong></td></tr>
+              <tr><td class="text-muted">ID / NISN</td><td>: <span id="historiNISN">-</span></td></tr>
+              <tr><td class="text-muted">Kelas</td><td>: <span id="historiKelas">-</span></td></tr>
+            </table>
+          </div>
+          <div class="col-sm-6">
+            <div class="p-2 border rounded-3 bg-light text-end">
+              <div class="small text-muted">SISA SALDO AKTIF BERJALAN:</div>
+              <div class="fs-5 fw-bold text-success" id="historiSaldoAktif">Rp 0</div>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped align-middle" style="font-size: 0.85rem;">
+            <thead class="table-dark">
+              <tr>
+                <th style="width: 15%;">Tanggal</th>
+                <th>Keterangan Transaksi / Sumber</th>
+                <th style="width: 15%;">Ekskul</th>
+                <th style="width: 15%; text-align: right;">Masuk (Rp)</th>
+                <th style="width: 15%; text-align: right;">Keluar (Rp)</th>
+                <th style="width: 15%; text-align: right;">Saldo (Rp)</th>
+              </tr>
+            </thead>
+            <tbody id="historiTableBody"></tbody>
+            <tfoot class="table-light fw-bold">
+              <tr>
+                <td colspan="3" class="text-center">TOTAL REKAPITULASI</td>
+                <td class="text-end text-success" id="historiTotalMasuk">Rp 0</td>
+                <td class="text-end text-danger" id="historiTotalKeluar">Rp 0</td>
+                <td class="text-end text-primary" id="historiTotalSisa">Rp 0</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL BAYAR STRUK EKSKUL -->
+<div class="modal fade" id="modalBayar" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-4 border-0 shadow">
+      <div class="modal-header rounded-top-4">
+        <h6 class="modal-title fw-bold">Konfirmasi Pembayaran Tagihan Ekskul</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <input type="hidden" id="bayarIdTarget">
+        <div class="mb-4">
+          <label class="form-label small fw-semibold text-secondary">Upload Bukti Transfer / Resi Bank:</label>
+          <input type="file" id="bayarFileInput" class="form-control" accept="image/*,.pdf">
+        </div>
+        <button class="btn btn-apple btn-apple-primary w-100 py-2" onclick="kirimKonfirmasiBayar()">
+          Kirim Bukti Pembayaran
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL TOPUP EKSKUL -->
+<div class="modal fade" id="modalTopUp" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-4 border-0 shadow">
+      <div class="modal-header bg-success text-white rounded-top-4">
+        <h6 class="modal-title fw-bold"><i class="bi bi-wallet2 me-1"></i> Titip Saldo Deposit Ekskul</h6>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div class="mb-3">
+          <label class="form-label small fw-semibold text-secondary">Nominal Transfer (Rp):</label>
+          <input type="number" id="topupNominal" class="form-control" placeholder="Contoh: 100000">
+        </div>
+        <div class="mb-4">
+          <label class="form-label small fw-semibold text-secondary">Upload Struk / Bukti Transfer:</label>
+          <input type="file" id="topupFileInput" class="form-control" accept="image/*,.pdf">
+        </div>
+        <button class="btn btn-apple btn-apple-success w-100 py-2" onclick="kirimTopUpDeposit()">
+          Kirim Titipan Saldo
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- JAVASCRIPT FRONTEND CONTROLLER (BRIDGE TO FETCH API)           -->
+<!-- ============================================================== -->
+<script>
+  // URL GOOGLE APPS SCRIPT EXEC ANDA (SEBAGAI BACKEND API ENGINE)
+  const GAS_API_URL = "https://script.google.com/macros/s/AKfycbzTWJQyeU6rpGWYJ-UH-_oihXHsrGbYVh_xdWh12VNNxrmb2REFA9HwEUQrP-tqQ0uF/exec";
+
+  // UNIVERSAL API CALLER (Mendukung fetch API luar & google.script.run)
+  function callBackend(actionName, payload, isPost = false) {
+    return new Promise((resolve, reject) => {
+      // Jika berjalan di dalam Google Apps Script (fallback)
+      if (typeof google !== 'undefined' && google.script && google.script.run && !isPost) {
+        google.script.run
+          .withSuccessHandler(resolve)
+          .withFailureHandler(reject)[actionName](payload);
+        return;
+      }
+
+      // Jika diakses dari GitHub Pages / Netlify (Solusi 2)
+      if (!isPost) {
+        let params = new URLSearchParams(payload || {});
+        params.append("action", actionName);
+        fetch(`${GAS_API_URL}?${params.toString()}`)
+          .then(res => res.json())
+          .then(resolve)
+          .catch(reject);
+      } else {
+        fetch(GAS_API_URL, {
+          method: "POST",
+          body: JSON.stringify({ action: actionName, ...(payload || {}) })
+        })
+        .then(res => res.json())
+        .then(resolve)
+        .catch(reject);
+      }
+    });
+  }
+
+  var currentUser = null;
+  var currentPeriodeEkskul = 'Periode 1';
+  var dataSiswaPerKelas = {};
+  var daftarSiswaLengkap = [];
+  var adminHelperData = { siswaList: [], tagihanGantung: [] };
+  var lastKuitansi = null;
+
+  window.onload = function() {
+    loadDropdownKelasSiswa();
+  };
+
+  function switchLoginMode(mode) {
+    if (mode === 'ORTU') {
+      document.getElementById('loginOrtuArea').classList.remove('hidden');
+      document.getElementById('loginStaffArea').classList.add('hidden');
+      document.getElementById('tabOrtuBtn').classList.add('active');
+      document.getElementById('tabStaffBtn').classList.remove('active');
+    } else {
+      document.getElementById('loginOrtuArea').classList.add('hidden');
+      document.getElementById('loginStaffArea').classList.remove('hidden');
+      document.getElementById('tabStaffBtn').classList.add('active');
+      document.getElementById('tabOrtuBtn').classList.remove('active');
+    }
+  }
+
+  function switchAdminTab(tab) {
+    var pSpp = document.getElementById('adminPaneSpp');
+    var pEks = document.getElementById('adminPaneEkskul');
+    var pSis = document.getElementById('adminPaneSiswa');
+    var pNung = document.getElementById('adminPaneNunggak');
+    var pRekap = document.getElementById('adminPaneRekap');
+
+    var bSpp = document.getElementById('adminTabSppBtn');
+    var bEks = document.getElementById('adminTabEkskulBtn');
+    var bSis = document.getElementById('adminTabSiswaBtn');
+    var bNung = document.getElementById('adminTabNunggakBtn');
+    var bRekap = document.getElementById('adminTabRekapBtn');
+
+    [pSpp, pEks, pSis, pNung, pRekap].forEach(p => p.classList.add('hidden'));
+    [bSpp, bEks, bSis, bNung, bRekap].forEach(b => b.classList.remove('active'));
+
+    if (tab === 'spp') { pSpp.classList.remove('hidden'); bSpp.classList.add('active'); }
+    else if (tab === 'ekskul') { pEks.classList.remove('hidden'); bEks.classList.add('active'); }
+    else if (tab === 'siswa') { pSis.classList.remove('hidden'); bSis.classList.add('active'); }
+    else if (tab === 'nunggak') { pNung.classList.remove('hidden'); bNung.classList.add('active'); }
+    else if (tab === 'rekap') { pRekap.classList.remove('hidden'); bRekap.classList.add('active'); }
+  }
+
+  function loadDropdownKelasSiswa() {
+    callBackend("getDaftarSiswaKelas")
+      .then(function(res) {
+        dataSiswaPerKelas = res.siswaMap || {};
+        daftarSiswaLengkap = res.rawSiswa || [];
+        var selKelas = document.getElementById('loginPilihKelas');
+        selKelas.innerHTML = '<option value="">-- Pilih Kelas --</option>';
+
+        if (res.kelasList && res.kelasList.length > 0) {
+          res.kelasList.forEach(function(k) {
+            selKelas.innerHTML += '<option value="' + k + '">Kelas ' + k + '</option>';
+          });
+        } else {
+          selKelas.innerHTML = '<option value="">(Belum ada data siswa terdaftar)</option>';
+        }
+
+        var adminSel = document.getElementById('adminEditPilihSiswa');
+        if (adminSel) {
+          adminSel.innerHTML = '<option value="">-- Pilih Siswa yang Ingin Diedit --</option>';
+          daftarSiswaLengkap.forEach(function(s) {
+            adminSel.innerHTML += '<option value="' + s.id + '">' + s.nama + ' (' + s.kelas + ' - ' + s.id + ')</option>';
+          });
+        }
+      })
+      .catch(function(err) {
+        Swal.fire('Error', 'Gagal memuat daftar kelas: ' + err.message, 'error');
+      });
+  }
+
+  function onKelasSelected() {
+    var k = document.getElementById('loginPilihKelas').value;
+    var selSiswa = document.getElementById('loginPilihSiswa');
+    selSiswa.innerHTML = '';
+
+    if (!k || !dataSiswaPerKelas[k]) {
+      selSiswa.disabled = true;
+      selSiswa.innerHTML = '<option value="">-- Pilih Kelas Terlebih Dahulu --</option>';
+      return;
+    }
+
+    selSiswa.disabled = false;
+    selSiswa.innerHTML = '<option value="">-- Pilih Nama Ananda --</option>';
+    dataSiswaPerKelas[k].forEach(function(s) {
+      selSiswa.innerHTML += '<option value="' + s.nama + '">' + s.nama + '</option>';
+    });
+  }
+
+  function handleLoginOrtu() {
+    var namaSiswa = document.getElementById('loginPilihSiswa').value;
+    var pass = document.getElementById('loginPasswordOrtu').value.trim();
+    var btn = document.getElementById('btnLoginOrtu');
+
+    if (!namaSiswa) return Swal.fire('Perhatian', 'Silakan pilih kelas dan nama ananda!', 'warning');
+    if (!pass) return Swal.fire('Perhatian', 'Silakan masukkan PIN!', 'warning');
+
+    btn.innerText = 'Memeriksa Akun...';
+    btn.disabled = true;
+
+    callBackend("loginUser", { username: namaSiswa, password: pass }, true)
+      .then(function(res) {
+        btn.innerText = 'Masuk ke Dashboard Anak';
+        btn.disabled = false;
+        if (res && res.success) {
+          currentUser = res.user;
+          document.getElementById('authSection').classList.add('hidden');
+          renderPortal(res.user);
+        } else {
+          Swal.fire('Login Gagal', res ? res.message : 'Password salah!', 'error');
+        }
+      })
+      .catch(function(err) {
+        btn.innerText = 'Masuk ke Dashboard Anak';
+        btn.disabled = false;
+        Swal.fire('Koneksi Gagal', err.message, 'error');
+      });
+  }
+
+  function handleLoginStaff() {
+    var idStaff = document.getElementById('loginStaffId').value.trim();
+    var pass = document.getElementById('loginStaffPass').value.trim();
+    var btn = document.getElementById('btnLoginStaff');
+
+    if (!idStaff || !pass) return Swal.fire('Perhatian', 'Masukkan ID dan Password!', 'warning');
+
+    btn.innerText = 'Memeriksa...';
+    btn.disabled = true;
+
+    callBackend("loginUser", { username: idStaff, password: pass }, true)
+      .then(function(res) {
+        btn.innerText = 'Masuk Portal Staff';
+        btn.disabled = false;
+        if (res && res.success) {
+          currentUser = res.user;
+          document.getElementById('authSection').classList.add('hidden');
+          renderPortal(res.user);
+        } else {
+          Swal.fire('Login Gagal', 'Akun tidak ditemukan atau password salah!', 'error');
+        }
+      })
+      .catch(function(err) {
+        btn.innerText = 'Masuk Portal Staff';
+        btn.disabled = false;
+        Swal.fire('Koneksi Gagal', err.message, 'error');
+      });
+  }
+
+  function renderPortal(user) {
+    if (user.role === 'ORTU') {
+      document.getElementById('ortuPortal').classList.remove('hidden');
+      document.getElementById('ortuNamaSiswa').innerText = user.nama;
+      document.getElementById('ortuNISN').innerText = 'ID: ' + user.id + ' | Kelas: ' + user.info;
+      
+      var avatarEl = document.getElementById('ortuAvatar');
+      if (avatarEl) {
+        if (user.foto && user.foto.toString().trim() !== '') {
+          avatarEl.innerHTML = '<img src="' + user.foto.toString().trim() + '" alt="Foto">';
+        } else {
+          avatarEl.innerText = (user.nama || 'A').charAt(0).toUpperCase();
+        }
+      }
+
+      callBackend("getProfilUser", { userId: (user.nama || user.id) }).then(function(prof) {
+        if (prof && prof.foto && prof.foto.trim() !== '') {
+          avatarEl.innerHTML = '<img src="' + prof.foto + '" alt="Foto">';
+          currentUser.foto = prof.foto;
+        }
+      });
+
+      switchOrtuView('ekskul');
+      loadOrtu(user.id);
+      loadTagihanOrtu(user.id);
+      loadDapodikOrtu(user.nama, user.id);
+    } else if (user.role === 'GURU') {
+      document.getElementById('guruPortal').classList.remove('hidden');
+      document.getElementById('guruNama').innerText = user.nama;
+      document.getElementById('guruEkskul').innerText = 'Cabang: ' + user.info;
+      var today = new Date().toISOString().split('T')[0];
+      document.getElementById('guruTanggalAbsen').value = today;
+      loadGuru(user.info);
+    } else if (user.role === 'ADMIN') {
+      document.getElementById('adminPortal').classList.remove('hidden');
+      initAdminDashboard();
+    }
+  }
+
+  function onAdminPilihSiswaUntukEdit() {
+    var idSiswa = document.getElementById('adminEditPilihSiswa').value;
+    var target = daftarSiswaLengkap.find(function(s) { return s.id === idSiswa; });
+    var boxFoto = document.getElementById('adminPratinjauFoto');
+
+    if (target) {
+      document.getElementById('adminEditNamaSiswa').value = target.nama;
+      document.getElementById('adminEditKelasSiswa').value = target.kelas;
+      if (target.foto && target.foto.trim() !== '') {
+        boxFoto.innerHTML = '<img src="' + target.foto + '" alt="Foto" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">';
+      } else {
+        boxFoto.innerText = target.nama.charAt(0).toUpperCase();
+      }
+    } else {
+      document.getElementById('adminEditNamaSiswa').value = '';
+      document.getElementById('adminEditKelasSiswa').value = '';
+      boxFoto.innerHTML = '<i class="bi bi-person text-secondary" style="font-size: 3rem;"></i>';
+    }
+  }
+
+  function adminProsesSimpanSiswa() {
+    var idSiswa = document.getElementById('adminEditPilihSiswa').value;
+    var namaBaru = document.getElementById('adminEditNamaSiswa').value.trim();
+    var kelasBaru = document.getElementById('adminEditKelasSiswa').value.trim();
+    var fileInput = document.getElementById('adminEditFileFoto');
+    var file = fileInput.files[0];
+    var btn = document.getElementById('btnAdminSimpanSiswa');
+
+    if (!idSiswa) return Swal.fire('Perhatian', 'Pilih siswa yang ingin diedit!', 'warning');
+    if (!namaBaru) return Swal.fire('Perhatian', 'Nama siswa tidak boleh kosong!', 'warning');
+
+    btn.innerText = 'Menyimpan...';
+    btn.disabled = true;
+
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var img = new Image();
+        img.onload = function() {
+          var canvas = document.createElement('canvas');
+          var maxDim = 300;
+          var w = img.width, h = img.height;
+          if (w > h) { if (w > maxDim) { h *= maxDim / w; w = maxDim; } }
+          else { if (h > maxDim) { w *= maxDim / h; h = maxDim; } }
+          canvas.width = w; canvas.height = h;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          var compressedBase64 = canvas.toDataURL('image/jpeg', 0.8);
+
+          callBackend("adminUpdateSiswaLengkap", { idSiswa: idSiswa, namaBaru: namaBaru, kelasBaru: kelasBaru, namaFile: file.name, fileBase64: compressedBase64 }, true)
+            .then(function(res) {
+              btn.innerText = 'Simpan Data & Foto Profil';
+              btn.disabled = false;
+              Swal.fire('Sukses', res.message, 'success');
+              if (res.success) {
+                fileInput.value = '';
+                loadDropdownKelasSiswa();
+                initAdminDashboard();
+              }
+            })
+            .catch(function(err) {
+              btn.innerText = 'Simpan Data & Foto Profil';
+              btn.disabled = false;
+              Swal.fire('Error', err.message, 'error');
+            });
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      callBackend("adminUpdateSiswaLengkap", { idSiswa: idSiswa, namaBaru: namaBaru, kelasBaru: kelasBaru, namaFile: null, fileBase64: null }, true)
+        .then(function(res) {
+          btn.innerText = 'Simpan Data & Foto Profil';
+          btn.disabled = false;
+          Swal.fire('Sukses', res.message, 'success');
+          if (res.success) {
+            loadDropdownKelasSiswa();
+            initAdminDashboard();
+          }
+        })
+        .catch(function(err) {
+          btn.innerText = 'Simpan Data & Foto Profil';
+          btn.disabled = false;
+          Swal.fire('Error', err.message, 'error');
+        });
+    }
+  }
+
+  function bukaModalEditProfil() {
+    if (!currentUser) return;
+    document.getElementById('editNamaSiswa').value = currentUser.nama;
+    document.getElementById('editPassBaru').value = '';
+    document.getElementById('editPassKonfirm').value = '';
+
+    callBackend("getProfilUser", { userId: (currentUser.nama || currentUser.id) })
+      .then(function(data) {
+        document.getElementById('editNoWa').value = (data && data.noWa) ? data.noWa : '';
+        var modal = new bootstrap.Modal(document.getElementById('modalEditProfil'));
+        modal.show();
+      });
+  }
+
+  function prosesSimpanProfilOrtu() {
+    var noWa = document.getElementById('editNoWa').value.trim();
+    var passBaru = document.getElementById('editPassBaru').value.trim();
+    var passKonfirm = document.getElementById('editPassKonfirm').value.trim();
+    var btn = document.getElementById('btnSimpanProfil');
+
+    if (passBaru !== '' && passBaru !== passKonfirm) return Swal.fire('Perhatian', 'Konfirmasi password tidak cocok!', 'warning');
+
+    btn.innerText = 'Menyimpan...';
+    btn.disabled = true;
+
+    callBackend("updateProfilOrtu", { userId: (currentUser.nama || currentUser.id), noWa: noWa, passwordBaru: passBaru }, true)
+      .then(function(res) {
+        btn.innerText = 'Simpan Perubahan';
+        btn.disabled = false;
+        Swal.fire('Sukses', res.message, 'success');
+        if (res.success) bootstrap.Modal.getInstance(document.getElementById('modalEditProfil')).hide();
+      })
+      .catch(function(err) {
+        btn.innerText = 'Simpan Perubahan';
+        btn.disabled = false;
+        Swal.fire('Error', err.message, 'error');
+      });
+  }
+
+  function switchOrtuView(view) {
+    var vEks = document.getElementById('viewEkskul'), vSpp = document.getElementById('viewSpp'), vDap = document.getElementById('viewDapodik');
+    var btnEks = document.getElementById('tabEkskulBtn'), btnSpp = document.getElementById('tabSppBtn'), btnDap = document.getElementById('tabDapoBtn');
+
+    [vEks, vSpp, vDap].forEach(v => v.classList.add('hidden'));
+    [btnEks, btnSpp, btnDap].forEach(b => b.classList.remove('active'));
+
+    if (view === 'ekskul') { vEks.classList.remove('hidden'); btnEks.classList.add('active'); }
+    else if (view === 'spp') { vSpp.classList.remove('hidden'); btnSpp.classList.add('active'); if (currentUser) loadSppOrtu(currentUser.id); }
+    else { vDap.classList.remove('hidden'); btnDap.classList.add('active'); }
+  }
+
+  function refreshOrtu() {
+    if (currentUser && currentUser.id) {
+      loadOrtu(currentUser.id);
+      loadTagihanOrtu(currentUser.id);
+      loadDapodikOrtu(currentUser.nama, currentUser.id);
+      loadSppOrtu(currentUser.id);
+    }
+  }
+
+  function loadDapodikOrtu(nama, nisn) {
+    var loading = document.getElementById('dapoLoading'), content = document.getElementById('dapoContent'), notFound = document.getElementById('dapoNotFound');
+    loading.classList.remove('hidden'); content.classList.add('hidden'); notFound.classList.add('hidden');
+
+    callBackend("getIdentitasDapodikSiswa", { p1: nama, p2: nisn })
+      .then(function(d) {
+        loading.classList.add('hidden');
+        if (d) {
+          document.getElementById('dapoNisn').innerText = d.nisn;
+          document.getElementById('dapoNik').innerText = d.nik;
+          document.getElementById('dapoTtl').innerText = d.tempatLahir + ', ' + d.tanggalLahir;
+          document.getElementById('dapoJk').innerText = d.jk;
+          document.getElementById('dapoRombel').innerText = 'Kelas ' + d.rombel;
+          document.getElementById('dapoAlamat').innerText = d.alamat;
+          document.getElementById('dapoAyah').innerText = d.ayahNama;
+          document.getElementById('dapoKerjaAyah').innerText = d.ayahPekerjaan + ' (' + d.ayahPendidikan + ')';
+          document.getElementById('dapoIbu').innerText = d.ibuNama;
+          document.getElementById('dapoKerjaIbu').innerText = d.ibuPekerjaan + ' (' + d.ibuPendidikan + ')';
+          document.getElementById('dapoFisik').innerText = d.tinggi + ' / ' + d.berat;
+          document.getElementById('dapoNoKk').innerText = d.noKk;
+          document.getElementById('dapoAkta').innerText = d.aktaLahir;
+          content.classList.remove('hidden');
+        } else {
+          notFound.classList.remove('hidden');
+        }
+      })
+      .catch(function() { loading.classList.add('hidden'); notFound.classList.remove('hidden'); });
+  }
+
+  function loadOrtu(nisn) {
+    callBackend("getOrtuDashboardData", { nisn: nisn })
+      .then(function(res) {
+        document.getElementById('ortuTotalTitip').innerText = 'Rp ' + Number(res.totalTitipMasuk).toLocaleString('id-ID');
+        document.getElementById('ortuTerpakai').innerText = 'Rp ' + Number(res.totalNilaiTerpakai).toLocaleString('id-ID');
+        document.getElementById('ortuSaldoDeposit').innerText = 'Rp ' + Number(res.saldoBersih).toLocaleString('id-ID');
+
+        var box = document.getElementById('ortuEkskulContainer');
+        box.innerHTML = '';
+        if (!res.ekskul || res.ekskul.length === 0) {
+          box.innerHTML = '<div class="text-muted small p-3 bg-light rounded text-center">Belum ada paket ekskul terdaftar.</div>';
+          return;
+        }
+        res.ekskul.forEach(function(item) {
+          var badgeBg = item.sisaSesi > 0 ? 'badge-apple-green' : 'badge-apple-red';
+          box.innerHTML += `
+            <div class="apple-card p-3 d-flex justify-content-between align-items-center">
+              <div>
+                <div class="fw-bold text-dark fs-6">${item.ekskul}</div>
+                <small class="text-muted">Telah Hadir: <strong>${item.terpakai}</strong> dari ${item.kuota} pertemuan</small>
+              </div>
+              <div class="text-end">
+                <span class="badge-apple ${badgeBg}">Sisa ${item.sisaSesi} Sesi</span>
+                <div class="small text-muted mt-1">Nilai Sisa: Rp ${Number(item.sisaRp).toLocaleString('id-ID')}</div>
+              </div>
+            </div>`;
+        });
+      });
+  }
+
+  function loadSppOrtu(nisn) {
+    callBackend("getSppDashboardOrtu", { nisn: nisn })
+      .then(function(res) {
+        if (!res || !res.success) return;
+        document.getElementById('sppTotalTunggakan').innerText = 'Rp ' + Number(res.totalTunggakan).toLocaleString('id-ID');
+        document.getElementById('sppTotalTerbayar').innerText = 'Rp ' + Number(res.totalTerbayar).toLocaleString('id-ID');
+        document.getElementById('sppBadgeStatus').innerText = res.totalTunggakan === 0 ? 'LUNAS SEMUA' : 'ADA TUNGGAKAN';
+        document.getElementById('sppBadgeStatus').className = res.totalTunggakan === 0 ? 'badge-apple badge-apple-green' : 'badge-apple badge-apple-red';
+
+        var containerTagihan = document.getElementById('sppDaftarTagihan');
+        containerTagihan.innerHTML = '';
+        if (!res.tagihan || res.tagihan.length === 0) {
+          containerTagihan.innerHTML = '<div class="text-success small p-3 text-center">Alhamdulillah, tidak ada catatan tagihan SPP tertunggak.</div>';
+        } else {
+          res.tagihan.forEach(function(t) {
+            var statusBadge = t.status === 'LUNAS' ? '<span class="badge-apple badge-apple-green">LUNAS</span>' : '<span class="badge-apple badge-apple-red">BELUM LUNAS</span>';
+            containerTagihan.innerHTML += `
+              <div class="p-3 mb-2 rounded-3 bg-light border d-flex justify-content-between align-items-center">
+                <div>
+                  <strong class="text-dark">${t.jenis} - ${t.bulan}</strong>
+                  <div class="small text-muted">Jatuh Tempo: ${t.jatuhTempo} | Terbayar: Rp ${t.terbayar.toLocaleString('id-ID')}</div>
+                </div>
+                <div class="text-end">
+                  ${statusBadge}
+                  <div class="fw-bold text-danger mt-1">Sisa: Rp ${t.sisa.toLocaleString('id-ID')}</div>
+                </div>
+              </div>`;
+          });
+        }
+
+        var tbodyHistory = document.getElementById('sppTbodyHistory');
+        tbodyHistory.innerHTML = '';
+        if (!res.pembayaran || res.pembayaran.length === 0) {
+          tbodyHistory.innerHTML = '<tr><td colspan="6" class="text-center text-muted py-3">Belum ada riwayat kuitansi pembayaran.</td></tr>';
+        } else {
+          res.pembayaran.forEach(function(p) {
+            var kuitansiBtn = `<button class="btn btn-apple btn-apple-secondary btn-sm py-1" onclick="tampilkanKuitansiModal('${p.noKuitansi}', '${p.tanggal}', '${currentUser.id}', '${currentUser.nama}', '${p.idTagihan}', ${p.jumlahBayar}, '${p.metode}', '${p.petugas}', '${p.keterangan}')"><i class="bi bi-printer"></i></button>`;
+            tbodyHistory.innerHTML += `
+              <tr>
+                <td><strong class="text-primary">${p.noKuitansi}</strong></td>
+                <td>${p.tanggal}</td>
+                <td>${p.idTagihan}<br><small class="text-muted">${p.keterangan}</small></td>
+                <td class="text-end fw-bold text-success">Rp ${p.jumlahBayar.toLocaleString('id-ID')}</td>
+                <td><span class="badge-apple badge-apple-gray">${p.metode}</span></td>
+                <td class="text-end">${kuitansiBtn}</td>
+              </tr>`;
+          });
+        }
+      });
+  }
+
+  function bukaModalHistoriDeposit(nisn, filter) {
+    if (!nisn) return;
+    callBackend("getHistoriDepositSiswa", { nisn: nisn })
+      .then(function(res) {
+        document.getElementById('historiNamaSiswa').innerText = res.nama || '-';
+        document.getElementById('historiNISN').innerText = res.nisn;
+        document.getElementById('historiKelas').innerText = res.kelas || '-';
+        document.getElementById('historiSaldoAktif').innerText = 'Rp ' + Number(res.saldoAktif).toLocaleString('id-ID');
+        document.getElementById('historiTotalMasuk').innerText = 'Rp ' + Number(res.totalMasuk).toLocaleString('id-ID');
+        document.getElementById('historiTotalKeluar').innerText = 'Rp ' + Number(res.totalKeluar).toLocaleString('id-ID');
+        document.getElementById('historiTotalSisa').innerText = 'Rp ' + Number(res.saldoAktif).toLocaleString('id-ID');
+
+        var tbody = document.getElementById('historiTableBody');
+        tbody.innerHTML = '';
+        var listData = filter === 'TITIP' ? res.mutasi.filter(m => m.tipe === 'MASUK') : res.mutasi;
+
+        if (listData.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted p-3">Belum ada riwayat transaksi deposit.</td></tr>';
+        } else {
+          listData.forEach(function(m) {
+            var masukCol = m.nominal > 0 ? ('<span class="text-success fw-bold">+Rp ' + Number(m.nominal).toLocaleString('id-ID') + '</span>') : '-';
+            var keluarCol = m.nominal < 0 ? ('<span class="text-danger fw-bold">-Rp ' + Math.abs(Number(m.nominal)).toLocaleString('id-ID') + '</span>') : '-';
+            tbody.innerHTML += `
+              <tr>
+                <td>${m.tanggal}</td>
+                <td>${m.keterangan}</td>
+                <td><span class="badge-apple badge-apple-gray">${m.ekskul}</span></td>
+                <td class="text-end">${masukCol}</td>
+                <td class="text-end">${keluarCol}</td>
+                <td class="text-end fw-bold">Rp ${Number(m.saldoBerjalan).toLocaleString('id-ID')}</td>
+              </tr>`;
+          });
+        }
+        var modal = new bootstrap.Modal(document.getElementById('modalHistori'));
+        modal.show();
+      });
+  }
+
+  function loadTagihanOrtu(nisn) {
+    callBackend("getTagihanOrtu", { nisn: nisn })
+      .then(function(list) {
+        var box = document.getElementById('ortuTagihanContainer');
+        box.innerHTML = '';
+        if (!list || list.length === 0) {
+          box.innerHTML = '<div class="text-muted small p-3 bg-light rounded text-center">Belum ada tagihan baru.</div>';
+          return;
+        }
+        list.forEach(function(t) {
+          var statusBadge = t.status === 'LUNAS' ? '<span class="badge-apple badge-apple-green">LUNAS</span>' : '<span class="badge-apple badge-apple-red">BELUM LUNAS</span>';
+          var btnAksi = (t.status === 'BELUM LUNAS' && t.tagihanBersih > 0)
+            ? (`<button class="btn btn-apple btn-apple-primary btn-sm mt-2" onclick="bukaModalBayar('${t.idBayar}')">Bayar / Upload Struk</button>`)
+            : '';
+          box.innerHTML += `
+            <div class="apple-card p-3 mb-2">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <strong>${t.ekskul}</strong> <span class="badge-apple badge-apple-gray ms-1">${t.periode}</span>
+                  <div class="small text-muted mt-1">Tarif: Rp ${t.biayaPaket.toLocaleString('id-ID')} | Potongan: <span class="text-success fw-bold">-Rp ${t.potongan.toLocaleString('id-ID')}</span></div>
+                </div>
+                <div class="text-end">
+                  ${statusBadge}
+                  <div class="fs-6 fw-bold text-primary mt-1">Rp ${t.tagihanBersih.toLocaleString('id-ID')}</div>
+                </div>
+              </div>
+              ${btnAksi}
+            </div>`;
+        });
+      });
+  }
+
+  function bukaModalBayar(idBayar) {
+    document.getElementById('bayarIdTarget').value = idBayar;
+    document.getElementById('bayarFileInput').value = '';
+    var modal = new bootstrap.Modal(document.getElementById('modalBayar'));
+    modal.show();
+  }
+
+  function kirimKonfirmasiBayar() {
+    var idBayar = document.getElementById('bayarIdTarget').value;
+    var fileInput = document.getElementById('bayarFileInput');
+    var file = fileInput.files[0];
+    if (!file) return Swal.fire('Perhatian', 'Pilih bukti bayar terlebih dahulu!', 'warning');
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      callBackend("konfirmasiPembayaranOrtu", { idBayar: idBayar, namaFile: file.name, fileBase64: e.target.result }, true)
+        .then(function(res) {
+          Swal.fire('Sukses', res.message, 'success');
+          bootstrap.Modal.getInstance(document.getElementById('modalBayar')).hide();
+          loadTagihanOrtu(currentUser.id);
+        });
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function bukaModalTopUp() {
+    document.getElementById('topupNominal').value = '';
+    document.getElementById('topupFileInput').value = '';
+    var modal = new bootstrap.Modal(document.getElementById('modalTopUp'));
+    modal.show();
+  }
+
+  function kirimTopUpDeposit() {
+    var nominal = document.getElementById('topupNominal').value;
+    var fileInput = document.getElementById('topupFileInput');
+    var file = fileInput.files[0];
+    if (!nominal || Number(nominal) <= 0) return Swal.fire('Perhatian', 'Masukkan nominal titip saldo!', 'warning');
+    if (!file) return Swal.fire('Perhatian', 'Lampirkan struk bukti transfer!', 'warning');
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      callBackend("topUpDepositOrtu", { nisn: currentUser.id, namaSiswa: currentUser.nama, nominal: nominal, namaFile: file.name, fileBase64: e.target.result }, true)
+        .then(function(res) {
+          Swal.fire('Sukses', res.message, 'success');
+          bootstrap.Modal.getInstance(document.getElementById('modalTopUp')).hide();
+          loadOrtu(currentUser.id);
+          loadTagihanOrtu(currentUser.id);
+        });
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function refreshGuru() {
+    if (currentUser && currentUser.info) loadGuru(currentUser.info);
+  }
+
+  function loadGuru(ekskul) {
+    callBackend("getSiswaByEkskul", { ekskul: ekskul })
+      .then(function(res) {
+        currentPeriodeEkskul = res.periodeAktif;
+        document.getElementById('guruPeriodeAktif').innerText = 'Periode: ' + res.periodeAktif;
+        var tbody = document.getElementById('guruTableBody');
+        tbody.innerHTML = '';
+        if (!res.siswaList || res.siswaList.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">Belum ada data siswa di ekskul ini.</td></tr>';
+          return;
+        }
+        res.siswaList.forEach(function(s) {
+          var aksiHtml = s.sisaSesi > 0 
+            ? `<div class="d-flex align-items-center justify-content-end gap-1">
+                <select id="status_${s.nisn}" class="form-select form-select-sm" style="width: auto; font-size: 0.8rem;">
+                  <option value="HADIR" selected>🟢 Hadir</option>
+                  <option value="IZIN">🟡 Izin</option>
+                  <option value="SAKIT">🔵 Sakit</option>
+                  <option value="ALPA">🔴 Alpa</option>
+                </select>
+                <button class="btn btn-apple btn-apple-primary btn-sm py-1" onclick="simpanPresensiManual('${s.nisn}')">Simpan</button>
+              </div>`
+            : '<span class="badge-apple badge-apple-red">Sesi Habis</span>';
+
+          tbody.innerHTML += `
+            <tr>
+              <td><strong>${s.nama}</strong><br><small class="text-muted">NISN: ${s.nisn}</small></td>
+              <td>${s.kelas}</td>
+              <td class="text-center"><span class="badge-apple badge-apple-blue">${s.sisaSesi}</span></td>
+              <td class="text-end">${aksiHtml}</td>
+            </tr>`;
+        });
+      });
+  }
+
+  function simpanPresensiManual(nisn) {
+    var statusTerpilih = document.getElementById('status_' + nisn).value;
+    var tanggalTerpilih = document.getElementById('guruTanggalAbsen').value;
+    if (!tanggalTerpilih) return Swal.fire('Perhatian', 'Tentukan tanggal latihan!', 'warning');
+
+    Swal.fire({
+      title: 'Konfirmasi Presensi',
+      text: `Catat kehadiran sebagai "${statusTerpilih}" pada ${tanggalTerpilih}? Kuota akan terpotong 1.`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Ya, Simpan'
+    }).then((res) => {
+      if (res.isConfirmed) {
+        callBackend("submitPresensi", { nisn: nisn, ekskul: currentUser.info, status: statusTerpilih, pelatih: currentUser.nama, tanggal: tanggalTerpilih, periode: currentPeriodeEkskul }, true)
+          .then(function(resp) {
+            Swal.fire('Tercatat', resp.message, 'success');
+            if (resp.success) loadGuru(currentUser.info);
+          });
+      }
+    });
+  }
+
+  function initAdminDashboard() {
+    loadAdminEkskulOptions();
+    loadAdminTagihan();
+    loadAdminHelper();
+
+    callBackend("getAdminDashboardAnalytics")
+      .then(function(data) {
+        document.getElementById('kpiTotalSiswa').innerText = data.totalSiswa;
+        document.getElementById('kpiTotalPendaftaran').innerText = data.totalEnrollments + ' Pendaftaran Ekskul';
+        document.getElementById('kpiTotalLaki').innerText = data.totalLaki;
+        document.getElementById('kpiTotalPerempuan').innerText = data.totalPerempuan;
+        document.getElementById('kpiTotalPiutang').innerText = 'Rp ' + Number(data.totalPiutang).toLocaleString('id-ID');
+        document.getElementById('badgeTotalNunggak').innerText = data.tagihanMenunggak.length + ' Siswa';
+
+        var nunggakBody = document.getElementById('adminTableNunggakBody');
+        nunggakBody.innerHTML = '';
+        if (!data.tagihanMenunggak || data.tagihanMenunggak.length === 0) {
+          nunggakBody.innerHTML = '<tr><td colspan="6" class="text-center text-success p-3 fw-bold">Semua tagihan telah lunas.</td></tr>';
+        } else {
+          data.tagihanMenunggak.forEach(function(item) {
+            nunggakBody.innerHTML += `
+              <tr>
+                <td><strong>${item.nama}</strong><br><small class="text-muted">${item.nisn}</small></td>
+                <td>${item.ekskul}<br><span class="badge-apple badge-apple-gray">${item.periode}</span></td>
+                <td><span class="badge-apple badge-apple-blue">${item.totalSesiDiikuti} Sesi</span></td>
+                <td class="fw-bold text-danger">Rp ${Number(item.tagihanBersih).toLocaleString('id-ID')}</td>
+                <td>${item.noWa || '-'}</td>
+                <td class="text-end">
+                  <button class="btn btn-apple btn-apple-success btn-sm py-1" onclick="kirimWhatsAppTagihanDetail('${item.nama}', '${item.ekskul}', '${item.periode}', ${item.tarifPaket}, ${item.potongan}, ${item.tagihanBersih}, '${item.detailKehadiran}', '${item.noWa}')"><i class="bi bi-whatsapp"></i> Tagih</button>
+                </td>
+              </tr>`;
+          });
+        }
+      });
+  }
+
+  function loadAdminEkskulOptions() {
+    callBackend("getMasterEkskulList")
+      .then(function(items) {
+        var sel = document.getElementById('adminSelectEkskul');
+        sel.innerHTML = '';
+        items.forEach(function(it) {
+          sel.innerHTML += '<option value="' + it.nama + '">' + it.nama + ' (Saat Ini: ' + it.periode + ')</option>';
+        });
+      });
+  }
+
+  function handleTutupPeriode() {
+    var ekskul = document.getElementById('adminSelectEkskul').value;
+    var periodeBaru = document.getElementById('adminPeriodeBaru').value.trim();
+    if (!periodeBaru) return Swal.fire('Perhatian', 'Ketik nama periode baru!', 'warning');
+
+    Swal.fire({
+      title: 'Tutup Periode Ekskul?',
+      text: `Tutup periode "${ekskul}" dan buka "${periodeBaru}"? Kuota sesi akan di-reset penuh.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Ya, Tutup & Reset'
+    }).then((res) => {
+      if (res.isConfirmed) {
+        callBackend("tutupPeriodeEkskulSpesifik", { ekskul: ekskul, periodeBaru: periodeBaru }, true)
+          .then(function(resp) {
+            Swal.fire('Berhasil', resp.message, 'success');
+            initAdminDashboard();
+          });
+      }
+    });
+  }
+
+  function loadAdminTagihan() {
+    callBackend("getAllTagihanAdmin")
+      .then(function(list) {
+        var tbody = document.getElementById('adminTableBayarBody');
+        tbody.innerHTML = '';
+        if (!list || list.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted p-3">Belum ada transaksi terdaftar.</td></tr>';
+          return;
+        }
+        list.forEach(function(item) {
+          var buktiLink = item.buktiUrl && item.buktiUrl.startsWith('data:image')
+            ? (`<a href="${item.buktiUrl}" target="_blank" class="btn btn-apple btn-apple-secondary btn-sm py-1">Lihat Struk</a>`)
+            : (item.buktiUrl && item.buktiUrl.startsWith('http') ? (`<a href="${item.buktiUrl}" target="_blank" class="btn btn-apple btn-apple-secondary btn-sm py-1">Lihat Struk</a>`) : '<span class="text-muted small">-</span>');
+
+          var btnAksi = item.status !== 'LUNAS' 
+            ? (`<button class="btn btn-apple btn-apple-success btn-sm py-1" onclick="konfirmasiLunasAdmin(${item.rowIdx})">✓ Verifikasi Lunas</button>`)
+            : '<span class="text-success small fw-bold"><i class="bi bi-check-circle-fill"></i> Selesai</span>';
+
+          tbody.innerHTML += `
+            <tr>
+              <td><strong>${item.nama}</strong><br><small class="text-muted">${item.nisn}</small></td>
+              <td>${item.ekskul}<br><small class="text-muted">${item.periode}</small></td>
+              <td class="fw-bold">Rp ${item.tagihanBersih.toLocaleString('id-ID')}</td>
+              <td>${buktiLink}</td>
+              <td><span class="badge-apple ${item.status === 'LUNAS' ? 'badge-apple-green' : 'badge-apple-gray'}">${item.status}</span></td>
+              <td class="text-end">${btnAksi}</td>
+            </tr>`;
+        });
+      });
+  }
+
+  function konfirmasiLunasAdmin(rowIdx) {
+    Swal.fire({
+      title: 'Verifikasi Lunas?',
+      text: 'Verifikasi status transaksi ini menjadi LUNAS?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Ya, Verifikasi'
+    }).then((res) => {
+      if (res.isConfirmed) {
+        callBackend("updateStatusLunas", { rowIdx: rowIdx }, true)
+          .then(function(resp) {
+            Swal.fire('Berhasil', resp.message, 'success');
+            initAdminDashboard();
+          });
+      }
+    });
+  }
+
+  function loadAdminHelper() {
+    callBackend("getAdminSiswaHelperData")
+      .then(function(data) {
+        adminHelperData = data;
+        var selSiswa = document.getElementById('adminPilihSiswa');
+        var selSppSiswa = document.getElementById('adminSppPilihSiswa');
+
+        selSiswa.innerHTML = '<option value="">-- Pilih Siswa --</option>';
+        if (selSppSiswa) selSppSiswa.innerHTML = '<option value="">-- Pilih Siswa --</option>';
+
+        data.siswaList.forEach(function(s) {
+          var opt = '<option value="' + s.nisn + '" data-wa="' + (s.wa || '') + '">' + s.nama + ' (' + s.nisn + ' - Kelas ' + s.kelas + ')</option>';
+          selSiswa.innerHTML += opt;
+          if (selSppSiswa) selSppSiswa.innerHTML += opt;
+        });
+        onAdminSelectSiswa();
+      });
+  }
+
+  function onAdminSelectSiswa() {
+    var nisn = document.getElementById('adminPilihSiswa').value;
+    var selTagihan = document.getElementById('adminPilihTagihanGantung');
+    var warning = document.getElementById('adminWarningTagihan');
+    selTagihan.innerHTML = '';
+    warning.innerText = '';
+
+    if (!nisn) {
+      selTagihan.innerHTML = '<option value="">-- Pilih Siswa Terlebih Dahulu --</option>';
+      return;
+    }
+
+    var tagihanAnak = adminHelperData.tagihanGantung.filter(function(t) {
+      return t.nisn === nisn || t.nama.toLowerCase() === nisn.toLowerCase();
+    });
+
+    if (tagihanAnak.length === 0) {
+      selTagihan.innerHTML = '<option value="">(Tidak ada tagihan yang belum lunas)</option>';
+      warning.innerText = 'Info: Siswa ini tidak memiliki tunggakan ekskul.';
+    } else {
+      tagihanAnak.forEach(function(t) {
+        selTagihan.innerHTML += `<option value="${t.rowIdx}">${t.ekskul} (${t.periode}) - Tagihan: Rp ${t.tagihanBersih.toLocaleString('id-ID')}</option>`;
+      });
+    }
+  }
+
+  function toggleAdminInputType() {
+    var tipe = document.getElementById('adminTipeTransaksi').value;
+    if (tipe === 'TAGIHAN') {
+      document.getElementById('adminAreaTagihanGantung').classList.remove('hidden');
+      document.getElementById('adminAreaNominal').classList.add('hidden');
+    } else {
+      document.getElementById('adminAreaTagihanGantung').classList.add('hidden');
+      document.getElementById('adminAreaNominal').classList.remove('hidden');
+    }
+  }
+
+  function prosesSimpanBayarAdmin() {
+    var nisn = document.getElementById('adminPilihSiswa').value;
+    if (!nisn) return Swal.fire('Perhatian', 'Pilih siswa terlebih dahulu!', 'warning');
+
+    var siswaObj = adminHelperData.siswaList.find(function(s) { return s.nisn === nisn; });
+    var namaSiswa = siswaObj ? siswaObj.nama : '';
+    var tipe = document.getElementById('adminTipeTransaksi').value;
+    var tagihanRowIdx = document.getElementById('adminPilihTagihanGantung').value;
+    var nominal = document.getElementById('adminInputNominal').value;
+    var catatan = document.getElementById('adminCatatanBayar').value.trim() || 'Bayar Langsung ke TU';
+
+    if (tipe === 'TAGIHAN' && !tagihanRowIdx) return Swal.fire('Perhatian', 'Pilih tagihan yang ingin dilunasi!', 'warning');
+    if (tipe === 'TOPUP' && (!nominal || Number(nominal) <= 0)) return Swal.fire('Perhatian', 'Masukkan nominal titip saldo!', 'warning');
+
+    Swal.fire({
+      title: 'Simpan Transaksi?',
+      text: `Simpan transaksi ${tipe} untuk ananda ${namaSiswa}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Ya, Simpan'
+    }).then((res) => {
+      if (res.isConfirmed) {
+        callBackend("adminInputBayarManual", { tipe: tipe, nisn: nisn, namaSiswa: namaSiswa, nominal: nominal, rowIdx: tagihanRowIdx, catatan: catatan }, true)
+          .then(function(resp) {
+            Swal.fire('Berhasil', resp.message, 'success');
+            if (resp.success) {
+              document.getElementById('adminInputNominal').value = '';
+              document.getElementById('adminCatatanBayar').value = '';
+              initAdminDashboard();
+            }
+          });
+      }
+    });
+  }
+
+  function bukaHistoriDariAdmin() {
+    var nisn = document.getElementById('adminPilihSiswa').value;
+    if (!nisn) return Swal.fire('Perhatian', 'Pilih siswa terlebih dahulu!', 'warning');
+    bukaModalHistoriDeposit(nisn, 'SEMUA');
+  }
+
+  function onAdminSelectSppSiswa() {
+    var nisn = document.getElementById('adminSppPilihSiswa').value;
+    var selTagihan = document.getElementById('adminSppPilihTagihan');
+    selTagihan.innerHTML = '<option value="">-- Memuat Tagihan... --</option>';
+
+    if (!nisn) {
+      selTagihan.innerHTML = '<option value="">-- Pilih Siswa Terlebih Dahulu --</option>';
+      return;
+    }
+
+    callBackend("getAdminSppTagihanByNisn", { nisn: nisn })
+      .then(function(list) {
+        selTagihan.innerHTML = '';
+        if (!list || list.length === 0) {
+          selTagihan.innerHTML = '<option value="">(Tidak ada tunggakan SPP)</option>';
+          document.getElementById('adminSppNominal').value = '';
+        } else {
+          selTagihan.innerHTML = '<option value="">-- Pilih Bulan Tagihan --</option>';
+          list.forEach(function(item) {
+            selTagihan.innerHTML += `<option value="${item.idTagihan}" data-row="${item.rowIdx}" data-nominal="${item.sisaTagihan}">${item.jenis} ${item.bulan} (Sisa: Rp ${item.sisaTagihan.toLocaleString('id-ID')})</option>`;
+          });
+        }
+      });
+  }
+
+  function onAdminSelectSppTagihan() {
+    var sel = document.getElementById('adminSppPilihTagihan');
+    var selectedOpt = sel.options[sel.selectedIndex];
+    if (selectedOpt && selectedOpt.dataset && selectedOpt.dataset.nominal) {
+      document.getElementById('adminSppNominal').value = selectedOpt.dataset.nominal;
+    }
+  }
+
+  function prosesSimpanSppAdmin() {
+    var selSiswa = document.getElementById('adminSppPilihSiswa');
+    var nisn = selSiswa.value;
+    var selTagihan = document.getElementById('adminSppPilihTagihan');
+    var optTagihan = selTagihan.options[selTagihan.selectedIndex];
+    var idTagihan = selTagihan.value;
+    var tagihanRowIdx = optTagihan ? optTagihan.dataset.row : null;
+    var nominal = document.getElementById('adminSppNominal').value;
+    var metode = document.getElementById('adminSppMetode').value;
+    var catatan = document.getElementById('adminCatatanBayar').value || document.getElementById('adminSppCatatan').value.trim();
+    var btn = document.getElementById('btnAdminSimpanSpp');
+
+    if (!nisn) return Swal.fire('Perhatian', 'Silakan pilih siswa!', 'warning');
+    if (!idTagihan) return Swal.fire('Perhatian', 'Silakan pilih tagihan SPP!', 'warning');
+    if (!nominal || Number(nominal) <= 0) return Swal.fire('Perhatian', 'Masukkan nominal pembayaran!', 'warning');
+
+    var siswaObj = adminHelperData.siswaList.find(function(s) { return s.nisn === nisn; });
+    var namaSiswa = siswaObj ? siswaObj.nama : 'Siswa';
+    var noWaSiswa = siswaObj ? siswaObj.wa : '';
+
+    Swal.fire({
+      title: 'Konfirmasi Bayar SPP',
+      html: `Catat kuitansi SPP untuk <b>${namaSiswa}</b><br>Nominal: <b class="text-success">Rp ${Number(nominal).toLocaleString('id-ID')}</b>?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Ya, Catat Pembayaran'
+    }).then((res) => {
+      if (res.isConfirmed) {
+        btn.innerText = 'Menyimpan...';
+        btn.disabled = true;
+
+        callBackend("adminInputBayarSPP", {
+          nisn: nisn, namaSiswa: namaSiswa, idTagihan: idTagihan,
+          rowIdx: tagihanRowIdx, nominal: nominal, metode: metode,
+          petugas: (currentUser ? currentUser.nama : 'Admin TU'), catatan: catatan
+        }, true)
+        .then(function(resp) {
+          btn.innerText = 'Simpan & Buat Struk';
+          btn.disabled = false;
+          
+          if (resp.success) {
+            onAdminSelectSppSiswa();
+            document.getElementById('adminSppNominal').value = '';
+            document.getElementById('adminSppCatatan').value = '';
+            
+            var kData = resp.kuitansiData;
+            lastKuitansi = kData;
+            lastKuitansi.noWa = noWaSiswa;
+
+            tampilkanKuitansiModal(
+              kData.noKuitansi, kData.tanggal, kData.nisn, kData.namaSiswa,
+              kData.tagihan, kData.nominal, kData.metode, kData.petugas, kData.keterangan, noWaSiswa
+            );
+          } else {
+            Swal.fire('Gagal', resp.message, 'error');
+          }
+        })
+        .catch(function(err) {
+          btn.innerText = 'Simpan & Buat Struk';
+          btn.disabled = false;
+          Swal.fire('Error', err.message, 'error');
+        });
+      }
+    });
+  }
+
+  function tampilkanKuitansiModal(noKw, tgl, nisn, nama, tagihan, nominal, metode, petugas, catatan, noWa) {
+    document.getElementById('kuitansiNo').innerText = noKw;
+    document.getElementById('kuitansiTgl').innerText = tgl;
+    document.getElementById('kuitansiNama').innerText = nama;
+    document.getElementById('kuitansiNisn').innerText = nisn;
+    document.getElementById('kuitansiUraian').innerText = tagihan;
+    document.getElementById('kuitansiNominal').innerText = 'Rp ' + Number(nominal).toLocaleString('id-ID');
+    document.getElementById('kuitansiMetode').innerText = metode;
+    document.getElementById('kuitansiCatatan').innerText = catatan || '-';
+    document.getElementById('kuitansiPetugas').innerText = petugas;
+
+    var btnWa = document.getElementById('btnKirimKuitansiWA');
+    btnWa.onclick = function() {
+      kirimWhatsAppStrukSPP(nama, noKw, tagihan, nominal, metode, tgl, noWa);
+    };
+
+    var modal = new bootstrap.Modal(document.getElementById('modalKuitansi'));
+    modal.show();
+  }
+
+  function kirimWhatsAppStrukSPP(namaSiswa, noKw, uraian, nominal, metode, tgl, noWa) {
+    var formatNominal = 'Rp ' + Number(nominal).toLocaleString('id-ID');
+    var pesan = 
+      '*BUKTI PEMBAYARAN SAH (KUITANSI DIGITAL)*\n' +
+      '*SD IT INSAN KAMIL*\n' +
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+      'Assalamu\'alaikum Warahmatullahi Wabarakatuh.\n\n' +
+      'Alhamdulillah, telah diterima pembayaran biaya sekolah ananda:\n\n' +
+      '👤 *Nama Siswa:* ' + namaSiswa + '\n' +
+      '🧾 *No. Kuitansi:* ' + noKw + '\n' +
+      '📅 *Waktu:* ' + tgl + '\n' +
+      '📌 *Tagihan:* ' + uraian + '\n' +
+      '💳 *Metode:* ' + metode + '\n' +
+      '💰 *Jumlah Terbayar:* *' + formatNominal + '*\n' +
+      '🟢 *Status:* *LUNAS (TERVERIFIKASI)*\n\n' +
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+      'Terima kasih atas kerja sama Ayah/Bunda. Semoga ananda selalu diberikan kemudahan dalam menuntut ilmu.\n\n' +
+      '_Tata Usaha SD IT Insan Kamil_';
+
+    var waClean = (noWa || '').toString().trim().replace(/[^0-9]/g, '');
+    if (waClean.startsWith('0')) waClean = '62' + waClean.substring(1);
+
+    var waUrl = waClean 
+      ? ('https://api.whatsapp.com/send?phone=' + waClean + '&text=' + encodeURIComponent(pesan)) 
+      : ('https://api.whatsapp.com/send?text=' + encodeURIComponent(pesan));
+
+    window.open(waUrl, '_blank');
+  }
+
+  function handleEksporLaporan(kategori) {
+    Swal.fire({
+      title: 'Menyiapkan Laporan...',
+      text: 'Sedang mengambil rekap kas dari spreadsheet...',
+      allowOutsideClick: false,
+      didOpen: () => { Swal.showLoading(); }
+    });
+
+    callBackend("exportLaporanKeuanganAdmin", { kategori: kategori }, true)
+      .then(function(res) {
+        Swal.close();
+        if (res.success) {
+          var blob = new Blob([decodeURIComponent(escape(atob(res.base64Data)))], { type: 'text/csv;charset=utf-8;' });
+          var link = document.createElement("a");
+          var url = URL.createObjectURL(blob);
+          link.setAttribute("href", url);
+          link.setAttribute("download", res.fileName);
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          Swal.fire('Berhasil Diunduh', `File laporan ${res.fileName} berhasil diekspor.`, 'success');
+        } else {
+          Swal.fire('Gagal Ekspor', res.message, 'error');
+        }
+      })
+      .catch(function(err) {
+        Swal.close();
+        Swal.fire('Error', err.message, 'error');
+      });
+  }
+
+  function kirimWhatsAppTagihanDetail(namaSiswa, ekskul, periode, tarifPaket, potongan, tagihanBersih, detailKehadiran, noWa) {
+    var formatBersih = 'Rp ' + Number(tagihanBersih).toLocaleString('id-ID');
+    var formatPaket = 'Rp ' + Number(tarifPaket).toLocaleString('id-ID');
+    var formatPotongan = 'Rp ' + Number(potongan).toLocaleString('id-ID');
+
+    var pesan = 
+      '*PEMBERITAHUAN ADMINISTRASI EKSKUL SD IT INSAN KAMIL*\n' +
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+      'Assalamu\'alaikum Warahmatullahi Wabarakatuh.\n\n' +
+      'Yth. Ayah/Bunda dari ananda *' + namaSiswa + '*,\n\n' +
+      'Izin menyampaikan rincian administrasi kegiatan ekstrakurikuler sekolah:\n\n' +
+      '📌 *Cabang Ekskul:* ' + ekskul + '\n' +
+      '📅 *Periode:* ' + periode + '\n\n' +
+      '📝 *Catatan Pertemuan:* \n' +
+      detailKehadiran.replace(/\\n/g, '\n') + '\n\n' +
+      '💰 *Rincian Biaya:* \n' +
+      '• Tarif Paket: ' + formatPaket + '\n' +
+      '• Potongan Deposit: -' + formatPotongan + '\n' +
+      '• *TOTAL TAGIHAN BERSIH: ' + formatBersih + '*\n\n' +
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+      'Mohon kesediaannya untuk menyelesaikan administrasi tersebut melalui portal sekolah.\n\n' +
+      'Jazakumullah Khairan Katsiran.\n' +
+      '_Pengelola Ekskul SD IT Insan Kamil_';
+
+    var waUrl = noWa 
+      ? ('https://api.whatsapp.com/send?phone=' + noWa + '&text=' + encodeURIComponent(pesan)) 
+      : ('https://api.whatsapp.com/send?text=' + encodeURIComponent(pesan));
+
+    window.open(waUrl, '_blank');
+  }
+
+  function logout() {
+    currentUser = null;
+    document.getElementById('ortuPortal').classList.add('hidden');
+    if (document.getElementById('guruPortal')) document.getElementById('guruPortal').classList.add('hidden');
+    if (document.getElementById('adminPortal')) document.getElementById('adminPortal').classList.add('hidden');
+    document.getElementById('authSection').classList.remove('hidden');
+    
+    document.getElementById('loginPilihKelas').value = '';
+    onKelasSelected();
+    document.getElementById('loginPasswordOrtu').value = '';
+  }
+</script>
+
+</body>
+</html>
